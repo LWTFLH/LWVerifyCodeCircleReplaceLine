@@ -1,10 +1,9 @@
 //
 //  LWPlaceHolderReplace.m
-//  safePassWord
+//  CodeView
 //
 //  Created by 李伟 on 16/11/14.
-//  Copyright © 2016年 googosoft. All rights reserved.
-//
+
 #define KScreenW [UIScreen mainScreen].bounds.size.width
 #define KScreenH [UIScreen mainScreen].bounds.size.height
 #import <UIKit/UIKit.h>
@@ -143,7 +142,13 @@
         [_tf resignFirstResponder];
     }
     
-    NSLog(@"%@", _tf.text);
+    if ([self.delegate respondsToSelector:@selector(lwValidteCodeDidInput:withCode:)]) {
+        [self.delegate lwValidteCodeDidInput:self withCode:_tf.text];
+    }else{
+    
+        NSLog(@"not implement protocal");
+    }
+    
 }
 
 

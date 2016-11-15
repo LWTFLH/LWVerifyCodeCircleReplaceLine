@@ -1,17 +1,15 @@
 //
-//  ViewController.m
-//  safePassWord
+//  LWPlaceHolderReplace.m
+//  CodeView
 //
-//  Created by pgy on 16/11/7.
-//  Copyright © 2016年 pgy. All rights reserved.
-//
+//  Created by 李伟 on 16/11/14.
 
 #import "LWPlaceHolderReplace.h"
 #import "ViewController.h"
 #define KScreenW [UIScreen mainScreen].bounds.size.width
 #define KScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface ViewController () <UITextFieldDelegate>
+@interface ViewController () <UITextFieldDelegate, LWPlaceHolderReplaceDelagate>
 
 @property (nonatomic, strong) UITextField *tf;
 @property (nonatomic, strong) UIView *point1;
@@ -32,10 +30,14 @@
 - (void)lwPlaceHolder {
 
     LWPlaceHolderReplace *placeView = [[LWPlaceHolderReplace alloc] initWithFrame:CGRectMake(20, 100, 150, 30)];
-    placeView.center =self.view.center;
+    placeView.delegate = self;
+    placeView.center = self.view.center;
     [self.view addSubview:placeView];
 }
+- (void)lwValidteCodeDidInput:(LWPlaceHolderReplace *)codeView withCode:(NSString *)code {
 
+    NSLog(@"<代理 >%@", code);
+}
 - (void)layoutSubview {
 
     //输入框
